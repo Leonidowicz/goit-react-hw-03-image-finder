@@ -18,13 +18,20 @@ export class App extends Component {
   handlerOnSubmit = request => {
     this.setState({
       request: request,
+      page: 1,
+      images: [],
     });
   };
 
-  showMore() {
+  showMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }));
-  }
-
+  };
+  scroll = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
+  };
   componentDidMount() {
     console.log('~ componentDidMount');
     fetchImages(this.state.request).then(data => {
@@ -38,9 +45,12 @@ export class App extends Component {
     console.log(this.state);
 
     console.log(prevState);
-    if (prevState.request !== request) {
+    if (prevState.request !== request || prevState.page !== page) {
       fetchImages(request, page).then(data => {
-        this.setState({ images: data.hits, total: data.totalHits });
+        this.setState(prevState => ({
+          images: [...prevState.images, ...data.hits],
+        }));
+        this.scroll();
       });
     }
   }
