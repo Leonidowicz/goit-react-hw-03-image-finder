@@ -54,11 +54,9 @@ export class App extends Component {
 
     if (prevState.request !== request || prevState.page !== page) {
       fetchImages(request, page).then(data => {
-        this.setState(prevState =>
-          ({
-            images: [...prevState.images, ...data.hits],
-          }.catch(error => console.log(error))),
-        );
+        this.setState(prevState => ({
+          images: [...prevState.images, ...data.hits],
+        }));
         this.scroll();
       });
     }
