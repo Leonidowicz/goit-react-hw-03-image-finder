@@ -5,7 +5,10 @@ export class ImageGalery extends Component {
   render() {
     return (
       <ul className="ImageGallery">
-        <ImageGalleryItem images={this.props.images} />
+        <ImageGalleryItem
+          images={this.props.images}
+          handlerOnClick={this.props.handlerOnClick}
+        />
       </ul>
     );
   }
