@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import './App.css';
-
 import { Searchbar } from './Components/Searchbar/Searchbar';
 import { fetchImages } from './Components/Api/Api.js';
 import { ImageGalery } from './Components/ImageGallery/ImageGallery';
